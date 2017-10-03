@@ -1,0 +1,57 @@
+
+#####################################
+DEVOPS DEVELOPMENT ON WINDOWS 10
+#####################################
+
+      ----------------------------
+      |  Microsoft Windows 10 PC |
+      ----------------------------
+	|	|	|
+	|	|	|
+	|	|	 ----- VirtualBox (win)
+	|	|				|
+	|	|				|
+	|	 --- Vagrant (Win)		 ------ Linux VM
+	|	 --- Terraform (Win)			|	|
+	|	 --- Packer (Win)			|	|
+	|						|	 --DevStack (OpenStack)
+	|						|
+	 ---WSL						 --Docker
+	      |
+	       --Ubuntu Bash
+			|
+			|
+			 -- Vagrant (lin)
+			 -- Terraform (lin)
+			 -- Packer (lin)
+
+				 
+				 
+#####################
+Vagrant on WSL
+#####################
+
+<Assumes WSL and Ubuntu flavor are installed>
+<If not, see here:  https://msdn.microsoft.com/en-us/commandline/wsl/install_guide>
+
+1. Download the package in WSL
+wget https://releases.hashicorp.com/vagrant/2.0.0/vagrant_2.0.0_x86_64.deb
+
+2. Install the package in WSL
+sudo dpkg -i vagrant_2.0.0_x86_64.deb
+
+3. Add this to your .bashrc or .bash_profile for awareness of WSL
+export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+
+4. Optional ways to override the current user:
+Other useful WSL related environment variables:
+    VAGRANT_WSL_WINDOWS_ACCESS_USER - Override current Windows username
+    VAGRANT_WSL_DISABLE_VAGRANT_HOME - Do not modify the VAGRANT_HOME variable
+    VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH - Custom Windows system home path
+
+
+source:
+https://www.vagrantup.com/docs/other/wsl.html
+
+
+
