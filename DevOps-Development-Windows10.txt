@@ -14,19 +14,20 @@ DEVOPS DEVELOPMENT ON WINDOWS 10
 	|	 --- Vagrant (Win)	    |	 ------ Linux VM
 	|	 --- Terraform (Win)	    |		|	|
 	|	 --- Packer (Win)	    |		|	|
-	|				    |		|	 --DevStack (OpenStack)
+	|	 --- Git (Win)		    |		|	 --DevStack (OpenStack)
 	|				    |		|
 	|				    |		 --Docker
-	|				    |	
+	|				    |		 --Git
 	|				    |
 	 ---WSL				     ------ Windows Server VM
 	      |						|
 	       --Ubuntu Bash				|
 			|				 --Windows Containers
 			|				 --Docker
-			 -- Vagrant (lin)
+			 -- Vagrant (lin)		 --Git (Win)
 			 -- Terraform (lin)
 			 -- Packer (lin)
+			 -- Git (lin)
 
 				 
 
@@ -48,6 +49,27 @@ chown -R mywsluser:mywsluser /home/mywsluser
 C:\>runas /user:administrator cmd
 
 lxrun /setdefaultuser mywsluser
+
+
+###########################
+Git with Windows & WSL
+###########################
+* Using Git is not easily, or safely shared between the Windows OS and WSL
+* To avoid risks of ruining WSL, as of now (10/2017), run muliple Git executables (one per system)
+* To avoid risks of ruining WSL, assume each system/subsystem has its own copy of a given Git repository.
+	- Git is distributed by nature so synching forks will be required when tools require you to cross boundaries
+* When running Git in a Linux VM via VirtualBox, you can share the git repo with Windows by putting the Git repos in a Vbox Share.
+	- The following caveats have been found so far:
+		> Security of directory permissions is not going to be the same (needs to be very open)
+		> Symlinks do NOT work well at all. Use full paths and don't expect symlinks to work
+
+###########################
+Docker with Windows
+###########################
+* There are 2 big caveats:
+	1. If you use VirtualBox, you cannot use Windows Containers natively on the host OS
+	2. If you choose to use Windows Containers natively on the host OS, you cannot use VirtuaBox
+		- Because of Hyper-V
 
 
 
