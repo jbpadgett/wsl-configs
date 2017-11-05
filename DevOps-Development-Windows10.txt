@@ -39,6 +39,9 @@ Setup WSL Linux User
 useradd -m mywsluser
 passwd
 
+# Add user to Sudoers
+sudo adduser mywsluser sudo
+
 # Copy bash customizations you have from root user (if any)
 shopt -s dotglob
 cp -rT /root /home/mywsluser
@@ -48,6 +51,15 @@ chown -R mywsluser:mywsluser /home/mywsluser
 # From command prompt as administrator (not within wsl)
 C:\>runas /user:administrator cmd
 
+lxrun /setdefaultuser mywsluser
+
+# If you forget to add your non root default user to the sudoers group, you'll need to reset your default user back to root, then change add the user to the sudoers group, then change the default user back to your new user account.
+eg) 
+ > from admin command prompt
+lxrun /setdefaultuser root
+ > from wsl
+sudo adduser mywsluser sudo
+ > from admin command prompt again
 lxrun /setdefaultuser mywsluser
 
 
